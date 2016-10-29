@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>A Leaflet map!</title>
+<title>Water Resources of India - Web maps (Central Water Commission)</title>
 
 <!-- Use remote copy of Leaflet-->
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
@@ -233,11 +233,11 @@ var city = L.OWM.current({intervall: 15, lang: 'de'});
 // Group Tilemaps
 var tileMaps = {
 "States": states,
-"Districts": districts,
-"Villages": villages,
+"Districts [zoom in]": districts,
+"Villages [zoom in]": villages,
 "River Basins (CWC)": basins,
-"Watersheds": watersheds,
-"Rivers": rivers,
+"Watersheds [zoom in]": watersheds,
+"Rivers [zoom in]": rivers,
 "Wetlands pre-monsoon 2005": wetlands,
 "Water Bodies": water_bodies,
 "Principal Aquifers": aquifers,
@@ -247,9 +247,9 @@ var tileMaps = {
 "Dams": dams,
 "Barrages/Weirs/Anicuts": bwa,
 "Command Areas": command_areas,
-"Interlinking": interlinking,
+"Interlinking [zoom in]": interlinking,
 "Minor-Irrigation Potential Created": mipc,
-"Groundwater Resources": groundwater_resource
+"Groundwater Resources Development": groundwater_resource
 };
 
 // Add Controls for Basemaps, Tilemaps and Vector Data to map
