@@ -1,0 +1,265 @@
+<html>
+<head>
+<title>A Leaflet map!</title>
+
+<!-- Use remote copy of Leaflet-->
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+<script type="text/javascript" src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+
+<!--Declare OpenWeatherMap-->
+<link rel="stylesheet" type="text/css" href="https://github.com/buche/leaflet-openweathermap/blob/master/leaflet-openweathermap.css" />
+<script type="text/javascript" src="https://github.com/buche/leaflet-openweathermap/blob/master/leaflet-openweathermap.js"></script>
+
+<!--Other CSS/JS files-->
+<link rel="stylesheet" href="css/Control.Opacity.css" />
+<script src="js/lib/opacity/Control.Opacity.js"></script>
+
+<style>
+    #map{
+      width: 100%;
+      height: 100%;
+    }
+</style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+// Declare Baselayers - OSM, HERE Maps, NASA
+
+// OpenStreetMap
+var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  })
+
+//HERE Normal Day
+/*var HERE_normalDay = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/{type}/{mapID}/normal.day/{z}/{x}/{y}/{size}/{format}?app_id={app_id}&app_code={app_code}&lg={language}', {
+	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+	subdomains: '1234',
+	mapID: 'newest',
+	app_id: '<your app_id>',
+	app_code: '<your app_code>',
+	base: 'base',
+	maxZoom: 20,
+	type: 'maptile',
+	language: 'eng',
+	format: 'png8',
+	size: '256'
+});*/
+
+// HERE Hybrid Day
+/*var HERE_hybridDay = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/{type}/{mapID}/hybrid.day/{z}/{x}/{y}/{size}/{format}?app_id={app_id}&app_code={app_code}&lg={language}', {
+	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+	subdomains: '1234',
+	mapID: 'newest',
+	app_id: '<your app_id>',
+	app_code: '<your app_code>',
+	base: 'aerial',
+	maxZoom: 20,
+	type: 'maptile',
+	language: 'eng',
+	format: 'png8',
+	size: '256'
+});*/
+
+// NASA Night Lights
+var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+	minZoom: 1,
+	maxZoom: 8,
+	format: 'jpg',
+	time: '',
+	tilematrixset: 'GoogleMapsCompatible_Level'
+});
+
+// Mapbox Light
+var mapbox_light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3JhaWdkczAyMiIsImEiOiJjaW0zMWJvamYwMWE1cnJrczcyZHNvNWw1In0.BPtMjAToq7ac96zV8DgOfw', {
+	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'
+});
+
+// Mapbox Satellite
+var mapbox_satellite = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3JhaWdkczAyMiIsImEiOiJjaW0zMWJvamYwMWE1cnJrczcyZHNvNWw1In0.BPtMjAToq7ac96zV8DgOfw', {
+	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'
+});
+
+// Initialize the map on the "map" div with a given center, zoom and default basemap - OSM
+var map = L.map('map',{layers: [mapbox_light]});
+  map.setView([22,82],5);
+
+// Group Basemaps
+var baseMaps = {
+"Open Street Map": osmLayer,
+"Mapbox-light": mapbox_light,
+"Mapbox-satellite": mapbox_satellite,
+"NASA Night Lights (2012)": NASAGIBS_ViirsEarthAtNight2012
+};
+
+// Declare Tile layers (WRIS - Web Map Services)
+var states = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Admin_subinfo_a/MapServer/WMSServer", {
+            layers: '7',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
+            zIndex: 1
+          }).addTo(map);
+
+var districts = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Admin_subinfo_a/MapServer/WMSServer", {
+            layers: '5',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
+          })
+
+var villages = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Rural/MapServer/WMSServer", {
+            layers: '1',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+          })
+
+var basins = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Basin/MapServer/WMSServer", {
+    	  layers: '9',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
+      })
+
+var watersheds = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Watershed/MapServer/WMSServer", {
+        layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+    })
+
+var rivers = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Basin/MapServer/WMSServer", {
+    	  layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      }).addTo(map);
+
+var wetlands = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SurfaceWaterBodyInfoSysWetLands/MapServer/WMSServer", {
+    	  layers: '4',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var water_bodies = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SWB/MapServer/WMSServer", {
+    	  layers: '10,11,12,13',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var aquifers = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/AquiferSystems/MapServer/WMSServer", {
+    	  layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var groundwater_level_fluc = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevelAnalysis/MapServer/WMSServer", {
+        	layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var groundwater_level_depth = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevelAnalysis/MapServer/WMSServer", {
+          layers: '3',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+        })
+
+var soils = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Soil/MapServer/WMSServer", {
+      	layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var dams = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRP/MapServer/WMSServer", {
+        layers: '9',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var bwa = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRP/MapServer/WMSServer", {
+        layers: '10',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var command_areas = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/CommandArea/MapServer/WMSServer", {
+        layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var interlinking = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/IBTL/MapServer/WMSServer", {
+        layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var mipc = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/MI/IrrigationPotentialCreated/MapServer/WMSServer", {
+      	layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+
+var groundwater_resource = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/GWR/MapServer/WMSServer", {
+      	layers: '1',
+        format: 'image/png',
+        transparent: true,
+        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+      })
+// Experimental WMS-OpenWeatherMap script
+/*
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
+var city = L.OWM.current({intervall: 15, lang: 'de'});
+*/
+
+// Group Tilemaps
+var tileMaps = {
+"States": states,
+"Districts": districts,
+"Villages": villages,
+"River Basins (CWC)": basins,
+"Watersheds": watersheds,
+"Rivers": rivers,
+"Wetlands pre-monsoon 2005": wetlands,
+"Water Bodies": water_bodies,
+"Principal Aquifers": aquifers,
+"Groundwater fluctuation": groundwater_level_fluc,
+"Groundwater depth": groundwater_level_depth,
+"Soil Productivity": soils,
+"Dams": dams,
+"Barrages/Weirs/Anicuts": bwa,
+"Command Areas": command_areas,
+"Interlinking": interlinking,
+"Minor-Irrigation Potential Created": mipc,
+"Groundwater Resources": groundwater_resource
+};
+
+// Add Controls for Basemaps, Tilemaps and Vector Data to map
+L.control.layers(baseMaps,tileMaps).addTo(map);
+
+// Mapbox attribution
+//var credits = L.control.attribution().addTo(map);
+//credits.addAttribution('© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>');
+    </script>
+
+</body>
+
+</html>

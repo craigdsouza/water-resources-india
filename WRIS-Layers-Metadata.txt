@@ -1,0 +1,373 @@
+Below is a list of Web Map Services (WMS), their URL endpoints and their layer names with corresponding data that the layers link to
+To get detailed file containing layer metadata associated with each WMS, append "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities" to each WMS URL endpoint
+
+I have only listed layers for WMSes of my interest.
+You can search for the associated file in the WMS folder and locate names for layers of your interest by searching for <Name> tags
+--------------------------------------------------
+#1. Administrative Layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Admin_subinfo_a/MapServer/WMSServer
+
+    Layers
+'1' : towns
+'2' : district headquarters
+'3' : state capitals
+'4' : Village Boundary - 2001
+'5' : District Boundary - 2011
+'6' : District Boundary - 2001
+'7' : State Boundary
+'8' : International Boundary
+--------------------------------------------------
+#2. Agro-climatic zones
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/AgrocliamticZones/MapServer/WMSServer
+
+    Layers
+'1' : agro-climatic regions of India
+--------------------------------------------------
+#3. Agro-ecological zones
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/AgrocliamticZones/MapServer/WMSServer
+
+    Layers
+'1' : agro-ecological regions of India
+--------------------------------------------------
+#4. AIBP Canal Layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Canal_AIBP/MapServer/WMSServer
+
+--------------------------------------------------
+#5. AIBP Canal Projects
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Canal_AIBP_Projects/MapServer/WMSServer
+
+--------------------------------------------------
+#6. Aquifer Litholog
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/AquiferLitholog/MapServer/WMSServer
+
+--------------------------------------------------
+#7. Basins
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Basin/MapServer/WMSServer
+
+    Layers
+'1' : Major Rivers
+'3' : Basin CGWB
+'5' : Basin AISLUS
+'7' : Basin NCIWRDP
+'9' : Basin CWC
+'10': Sub Basin WRIS
+'11': Basin WRIS
+--------------------------------------------------
+#8. Canals
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Canal/MapServer/WMSServer
+
+    Layers
+'1' : command areas of India
+'3' : sub minor/other
+'4' : minor
+'5' : distributary
+'6' : branch canal
+'7' : main canal
+--------------------------------------------------
+#9. Climate Gridded data
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/ClimateInfoSysGriddedData/MapServer/WMSServer
+
+--------------------------------------------------
+#10. Command Areas (Appears similar to the Canal layer)
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/CommandArea/MapServer/WMSServer
+
+    Layers
+'1' : command areas of India
+'3' : sub minor/other
+'4' : minor
+'5' : distributary
+'6' : branch canal
+'7' : main canal
+--------------------------------------------------
+#11. CWC Offices
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/CWC_Offices/MapServer/WMSServer
+
+--------------------------------------------------
+#12. CWC Flood Forecasting Sites
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/FF/MapServer/WMSServer
+
+--------------------------------------------------
+#13. CWC Hydro Observation Stations
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/HO_SubInfo/MapServer/WMSServer
+
+--------------------------------------------------
+#14. DEM
+http://india-wris.nrsc.gov.in/arcgis/services/Common/DEM/MapServer/WMSServer
+
+    Layers
+'1' : unnamed
+'2' : unnamed
+'3' : DEM
+--------------------------------------------------
+#15. Flood Extent
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Flood/MapServer/WMSServer
+
+--------------------------------------------------
+#16. Ground water level location
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevel/MapServer/WMSServer
+
+--------------------------------------------------
+#17. Ground water level analysis
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevelAnalysis/MapServer/WMSServer
+
+    Layers
+'1' : Fluctuation (m)
+'2' : Fluctuation (m)
+'3' : Depth (m bgl)
+'4' : Depth (m bgl)
+'5' : Fluctuation (m)
+'6' : Fluctuation (m)
+'7' : Depth (m bgl)
+'8' : Depth (m bgl)
+'9' : Fluctuation (m)
+'10': Fluctuation (m)
+'11': Depth (m bgl)
+'12': Depth (m bgl)
+'13': Fluctuation (m)
+'14': Fluctuation (m)
+'15': Depth (m bgl)
+'16': Depth (m bgl)
+'18': Hilly_Dist_WLIndia
+--------------------------------------------------
+
+#18. Ground water quality location
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/GWQuality/MapServer/WMSServer
+
+--------------------------------------------------
+#19. Ground water arsenic site
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/GWSArsenic/MapServer/WMSServer
+
+--------------------------------------------------
+#20. Hydro-met extreme drought 
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Drought/MapServer/WMSServer
+
+    Layers
+'1': Drought
+--------------------------------------------------
+#21. Hydro-met extreme earthquake
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Earthquake/MapServer/WMSServer
+
+--------------------------------------------------
+#22. Hydro-met extreme temperature and rainfall
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Water_Extreme/MapServer/WMSServer
+
+    Layers
+'1': Extreme Temperature and Rainfall
+--------------------------------------------------
+#23. Hydro-met sub zone
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/HydroMetSubZone/MapServer/WMSServer
+
+    Layers
+'1': Sub-zone
+--------------------------------------------------
+#24. Inter basin transfer link
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/IBTL/MapServer/WMSServer
+
+    Layers
+'1' : Links
+--------------------------------------------------
+#25. Infrastructure 
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Infra_InfoSystem/MapServer/WMSServer
+
+    Layers
+'1' : Waterways
+'2' : State Highways
+'3' : National Highways
+'4' : Multilane Highways
+'5' : Rail Network
+'6' : Airport
+--------------------------------------------------
+## Inland navigation waterways
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Inland/MapServer/WMSServer
+
+--------------------------------------------------
+## Land use Land cover 
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/LULC/MapServer/WMSServer
+
+File not available!
+
+--------------------------------------------------
+## Minor Irrigation potential created
+http://india-wris.nrsc.gov.in/arcgis/services/MI/IrrigationPotentialCreated/MapServer/WMSServer
+
+    Layers
+'1' : MI Irrigation Potential created (Ha)
+'2' : NA
+'3' : State Boundary
+--------------------------------------------------
+## Minor Irrigation potential utilized
+http://india-wris.nrsc.gov.in/arcgis/services/MI/IrrigationPotentialUtilized/MapServer/WMSServer
+
+    Layers
+'1' : MI Irrigation Potential utilized (Ha)
+'2' : NA
+'3' : State Boundary
+--------------------------------------------------
+## Meteorological station
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Meteorological/MapServer/WMSServer
+
+--------------------------------------------------
+## Meteorological sub division 
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/metSubDiv/MapServer/WMSServer
+
+--------------------------------------------------
+## No of deep tubewells
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfDeepTubewells/MapServer/WMSServer
+
+--------------------------------------------------
+## No of dugwells
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfDugwells/MapServer/WMSServer
+
+--------------------------------------------------
+## No of Groundwater schemes
+http://india-wris.nrsc.gov.in/arcgis/services/MI/No Of Ground Water Schemes/MapServer/WMSServer
+
+--------------------------------------------------
+## No of shallow tubewells
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfShallowTubewells/MapServer/WMSServer
+
+--------------------------------------------------
+## No of Surface flow schemes
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfSurfaceFlowSchemes/MapServer/WMSServer
+
+--------------------------------------------------
+## No of Surface lift schemes
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfSurfaceLiftSchemes/MapServer/WMSServer
+
+--------------------------------------------------
+## No of Surface water schemes
+http://india-wris.nrsc.gov.in/arcgis/services/MI/NoOfSurfaceWaterSchemes/MapServer/WMSServer
+
+--------------------------------------------------
+## Percentage Irrigation potential utilized
+http://india-wris.nrsc.gov.in/arcgis/services/MI/PercentageIrrigationPotentialUtilized/MapServer/WMSServer
+
+    Layers
+'1' : Percentage Irrigation Potential utilized (Ha)
+'2' : NA
+'3' : State Boundary
+--------------------------------------------------
+## Rivers
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/River/MapServer/WMSServer
+
+--------------------------------------------------
+## Stream order river layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/River_SO/MapServer/WMSServer
+
+--------------------------------------------------
+## Snow glacial lake
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Snow_Glacial/MapServer/WMSServer
+
+--------------------------------------------------
+## Soil layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Soil/MapServer/WMSServer
+
+    Layers
+'1' : Productivity
+'2' : Erosion
+'3' : Slope
+'4' : Texture
+'5' : Depth
+--------------------------------------------------
+## Surface water quality station
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WQ_subinfo/MapServer/WMSServer
+
+--------------------------------------------------
+## Surface water quality lab
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WQL_Lab_Map/MapServer/WMSServer
+
+--------------------------------------------------
+## Surface water body
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SWB/MapServer/WMSServer
+
+    Layers
+'2' : Unnamed
+'4' : Waterbodies (0 - 0.5 Ha)
+'5' : Waterbodies (0.5 - 2.5 Ha)
+'6' : Waterbodies (2.5 - 5 Ha)
+'7' : Waterbodies (5 - 10 Ha)
+'8' : Waterbodies (> 10 Ha)
+'9' : Lake
+'10': Reservoir (<500 Ha)
+'11': Reservoir (500 - 2000 Ha)
+'12': Reservoir (2000 - 5000 Ha)
+'13': Reservoir (>5000 Ha)
+'14': River Polygon
+'15': Watershed boundary
+'16': Sub-basin WRIS
+'17': Basin WRIS
+'18': River Line
+'19': unnamed
+'20': Major Rivers
+--------------------------------------------------
+## Total no of minor irrigation
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/TotalNoOfMinorIrrigation/MapServer/WMSServer
+
+--------------------------------------------------
+## Tribal Sub Plan Area
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Tribal_Sub_Plan_Area/MapServer/WMSServer
+
+--------------------------------------------------
+## Urban Settlement
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Urban_V4/MapServer/WMSServer
+
+--------------------------------------------------
+## Village layer (census 2001)
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Rural/MapServer/WMSServer
+
+    Layers
+'1': Village Boundary (Census 2001)
+--------------------------------------------------
+## Wasteland layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WasteLand/MapServer/WMSServer
+
+--------------------------------------------------
+## Watershed Layer
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Watershed/MapServer/WMSServer
+
+    Layers
+'1': Watersheds
+'2': Sub-basins
+'3': Basins
+'4': Water resource region
+--------------------------------------------------
+## Water resources projects
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRP/MapServer/WMSServer
+
+    Layers
+'1': Hydroelectric basins
+'2': Command area status
+'3': Seismic zones
+'4': Hydroelectrict region
+'5': Type of command area
+'6': Structure line
+'7': Canal off-take locations
+'8': Lift
+'9': Dams
+'10': Barrages/Weirs/Anicuts
+'11': Powerhouses
+--------------------------------------------------
+## Water resources regions
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRR/MapServer/WMSServer
+
+--------------------------------------------------
+## Wetlands
+http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SurfaceWaterBodyInfoSysWetLands/MapServer/WMSServer
+
+    Layers
+'1': Wetlands pre-monsoon 1994
+'2': Wetlands post-monsoon 1994
+'3': Wetlands pre-monsoon 2005
+'4': Wetlands post-monsoon 2005
+--------------------------------------------------
+## Aquifer systems
+http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/AquiferSystems/MapServer/WMSServer
+
+    Layers
+'1': Principal aquifers
+--------------------------------------------------
+## Groundwater resource
+http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/GWR/MapServer/WMSServer
+
+    Layers
+'1': Block categorization
