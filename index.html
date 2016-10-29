@@ -17,17 +17,25 @@
 <style>
     #map{
       width: 100%;
-      height: 100%;
+      height: 90%;
+    }
+    h1{
+      color:green;
+      font-family: "Garamond","Calibri","Times New Roman";
+      margin-left:30px;
+      margin-top:10px;
+      margin-bottom:10px;
     }
 </style>
 
 </head>
 
 <body>
-    <div id="map"></div>
+	<div><span class="header"><h1>Water Resources of India - Central Water Commission (CWC) Web maps</h1></span></div>
+	<div id="map"></div>
 
-    <script>
-// Declare Baselayers - OSM, HERE Maps, NASA
+	<script>
+// Declare Baselayers - OSM, HERE Maps, Mapbox, NASA
 
 // OpenStreetMap
 var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -77,12 +85,12 @@ var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('http://map1.vis.earthdata.nasa
 
 // Mapbox Light
 var mapbox_light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3JhaWdkczAyMiIsImEiOiJjaW0zMWJvamYwMWE1cnJrczcyZHNvNWw1In0.BPtMjAToq7ac96zV8DgOfw', {
-	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'
+	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
 // Mapbox Satellite
 var mapbox_satellite = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3JhaWdkczAyMiIsImEiOiJjaW0zMWJvamYwMWE1cnJrczcyZHNvNWw1In0.BPtMjAToq7ac96zV8DgOfw', {
-	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'
+	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
 // Initialize the map on the "map" div with a given center, zoom and default basemap - OSM
@@ -102,7 +110,7 @@ var states = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubI
             layers: '7',
             format: 'image/png',
             transparent: true,
-            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>",
             zIndex: 1
           }).addTo(map);
 
@@ -110,120 +118,121 @@ var districts = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/S
             layers: '5',
             format: 'image/png',
             transparent: true,
-            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>",
           })
 
 var villages = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Rural/MapServer/WMSServer", {
             layers: '1',
             format: 'image/png',
             transparent: true,
-            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
           })
 
 var basins = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Basin/MapServer/WMSServer", {
-    	  layers: '9',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>",
-      })
+    	    layers: '9',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>",
+          })
 
 var watersheds = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Watershed/MapServer/WMSServer", {
-        layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-    })
+            layers: '1',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var rivers = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Basin/MapServer/WMSServer", {
-    	  layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      }).addTo(map);
+    	    layers: '1',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          }).addTo(map);
 
 var wetlands = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SurfaceWaterBodyInfoSysWetLands/MapServer/WMSServer", {
-    	  layers: '4',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+    	    layers: '4',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var water_bodies = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/SWB/MapServer/WMSServer", {
-    	  layers: '10,11,12,13',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+    	    layers: '10,11,12,13',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var aquifers = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/AquiferSystems/MapServer/WMSServer", {
-    	  layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+    	    layers: '1',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var groundwater_level_fluc = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevelAnalysis/MapServer/WMSServer", {
-        	layers: '1',
-          format: 'image/png',
-          transparent: true,
-          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+            layers: '1',
+            format: 'image/png',
+            transparent: true,
+            attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var groundwater_level_depth = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WaterLevelAnalysis/MapServer/WMSServer", {
-          layers: '3',
-          format: 'image/png',
-          transparent: true,
-          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-        })
+           layers: '3',
+           format: 'image/png',
+           transparent: true,
+           attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var soils = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Soil/MapServer/WMSServer", {
-      	layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+      	  layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var dams = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRP/MapServer/WMSServer", {
-        layers: '9',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+          layers: '9',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var bwa = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/WRP/MapServer/WMSServer", {
-        layers: '10',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+          layers: '10',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var command_areas = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/CommandArea/MapServer/WMSServer", {
-        layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+          layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var interlinking = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/IBTL/MapServer/WMSServer", {
-        layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+          layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var mipc = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/MI/IrrigationPotentialCreated/MapServer/WMSServer", {
-      	layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+      	  layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
 
 var groundwater_resource = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/GeoViz/GWR/MapServer/WMSServer", {
-      	layers: '1',
-        format: 'image/png',
-        transparent: true,
-        attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>WRIS</a>"
-      })
+      	  layers: '1',
+          format: 'image/png',
+          transparent: true,
+          attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>"
+          })
+
 // Experimental WMS-OpenWeatherMap script
 /*
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
@@ -255,9 +264,6 @@ var tileMaps = {
 // Add Controls for Basemaps, Tilemaps and Vector Data to map
 L.control.layers(baseMaps,tileMaps).addTo(map);
 
-// Mapbox attribution
-//var credits = L.control.attribution().addTo(map);
-//credits.addAttribution('© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>');
     </script>
 
 </body>
