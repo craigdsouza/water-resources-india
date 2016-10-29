@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<div><span class="header"><h1>Water Resources of India - Central Water Commission (CWC) Web maps</h1><a href="https://github.com/craigdsouza/water_resources_india">View Guide to map here</a></span></div>
+	<div><span class="header"><h1>Water Resources of India - Central Water Commission (CWC) Web maps</h1><a style="margin-left:30px; font-size:12px", href="https://github.com/craigdsouza/water_resources_india">Click here for more about this map</a></span></div>
 	<div id="map"></div>
 
 	<script>
@@ -133,7 +133,7 @@ var basins = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubI
             format: 'image/png',
             transparent: true,
             attribution: "<a href='http://www.india-wris.nrsc.gov.in/WMSServicesApp.html'>Source: WRIS (CWC)</a>",
-          })
+          }).addTo(map);
 
 var watersheds = L.tileLayer.wms("http://india-wris.nrsc.gov.in/arcgis/services/SubInfoSysLCC/Watershed/MapServer/WMSServer", {
             layers: '1',
